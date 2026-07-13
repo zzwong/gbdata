@@ -1,0 +1,38 @@
+name: Feature request
+description: Propose an ESPI workflow or compatibility improvement
+title: "feat: "
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: Do not include customer data or captured provider responses.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What user problem should this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: Include commands and safe output shapes when useful.
+    validations:
+      required: true
+  - type: textarea
+    id: standard
+    attributes:
+      label: Standards or provider context
+      description: Link public ESPI documentation when applicable. Do not paste licensed standards text.
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy confirmation
+      options:
+        - label: This request contains no customer identifiers, readings, costs, credentials, or private provider responses.
+          required: true

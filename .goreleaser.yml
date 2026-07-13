@@ -1,0 +1,29 @@
+version: 2
+project_name: gbdata
+builds:
+  - main: ./cmd/gbdata
+    binary: gbdata
+    env: [CGO_ENABLED=0]
+    goos: [linux, darwin, windows]
+    goarch: [amd64, arm64]
+    flags: ["-trimpath"]
+    ldflags: ["-s -w -X main.version={{.Version}}"]
+    mod_timestamp: "{{ .CommitTimestamp }}"
+archives:
+  - name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    formats: [tar.gz]
+    format_overrides:
+      - goos: windows
+        formats: [zip]
+    files:
+      - LICENSE
+      - NOTICE
+      - README.md
+      - SECURITY.md
+      - "third_party_licenses/*"
+checksum:
+  name_template: checksums.txt
+changelog:
+  sort: asc
+release:
+  prerelease: auto

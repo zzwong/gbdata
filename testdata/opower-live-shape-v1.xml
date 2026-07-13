@@ -1,0 +1,287 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!-- Sanitized real-shape Opower fixture; all identifiers, dates, measurements, costs, and free text are synthetic. -->
+<ns0:feed xmlns:ns0="http://www.w3.org/2005/Atom" xmlns:ns2="http://naesb.org/espi" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="fixture-52c99e2951f85145">
+  <ns0:id>urn:uuid:e75a100087afd9b2</ns0:id>
+  <ns0:link href="https://example.invalid/DataCustodian/espi/1_1/resource/ApplicationInformation/urn:uuid:5762c9e8-4e65-3b0c-83b3-7874683f3dbe" rel="self" type="espi-feed/Usage">
+  </ns0:link>
+  <ns0:title type="text">Opower ESPI Third Party Batch Feed v1</ns0:title>
+  <ns0:updated>2024-01-01T00:00:00Z</ns0:updated>
+  <ns0:entry>
+    <ns0:id>urn:uuid:e2496e7c1f9f9319</ns0:id>
+    <ns0:link href="https://example.invalid/Opower/espi/1_1/resource/LocalTimeParameters" rel="up" type="espi-feed/LocalTimeParameters">
+    </ns0:link>
+    <ns0:link href="https://example.invalid/Opower/espi/1_1/resource/LocalTimeParameters/fixture-e2496e7c1f9f9319" rel="self" type="espi-entry/LocalTimeParameters">
+    </ns0:link>
+    <ns0:link href="https://example.invalid/Opower/espi/1_1/resource/Subscription/fixture-f47d92df9565775d/UsagePoint" rel="related" type="espi-feed/UsagePoint">
+    </ns0:link>
+    <ns0:link href="https://example.invalid/Opower/espi/1_1/resource/Subscription/fixture-f47d92df9565775d/UsagePoint/fixture-6fdef651df23113d" rel="related" type="espi-entry/UsagePoint">
+    </ns0:link>
+    <ns0:title type="text">Synthetic Opower fixture</ns0:title>
+    <ns0:updated>2024-01-01T00:00:00Z</ns0:updated>
+    <ns0:published>2024-01-01T00:00:00Z</ns0:published>
+    <ns0:content type="xml">
+      <ns2:LocalTimeParameters>
+        <ns2:dstEndRule>B40E2000</ns2:dstEndRule>
+        <ns2:dstOffset>0</ns2:dstOffset>
+        <ns2:dstStartRule>360E2000</ns2:dstStartRule>
+        <ns2:tzOffset>0</ns2:tzOffset>
+      </ns2:LocalTimeParameters>
+    </ns0:content>
+  </ns0:entry>
+  <ns0:entry>
+    <ns0:id>urn:uuid:6fdef651df23113d</ns0:id>
+    <ns0:link href="https://example.invalid/Opower/espi/1_1/resource/Subscription/fixture-f47d92df9565775d/UsagePoint/fixture-6fdef651df23113d" rel="self" type="espi-entry/UsagePoint">
+    </ns0:link>
+    <ns0:link href="https://example.invalid/Opower/espi/1_1/resource/Subscription/fixture-f47d92df9565775d/UsagePoint" rel="up" type="espi-feed/UsagePoint">
+    </ns0:link>
+    <ns0:link href="https://example.invalid/Opower/espi/1_1/resource/LocalTimeParameters/fixture-e2496e7c1f9f9319" rel="related" type="espi-entry/LocalTimeParameters">
+    </ns0:link>
+    <ns0:link href="https://example.invalid/Opower/espi/1_1/resource/Subscription/fixture-f47d92df9565775d/UsagePoint/fixture-6fdef651df23113d/MeterReading" rel="related" type="espi-feed/MeterReading">
+    </ns0:link>
+    <ns0:link href="https://example.invalid/Opower/espi/1_1/resource/Subscription/fixture-f47d92df9565775d/UsagePoint/fixture-6fdef651df23113d/MeterReading/fixture-628d608784bba412" rel="related" type="espi-entry/MeterReading">
+    </ns0:link>
+    <ns0:link href="https://example.invalid/Opower/espi/1_1/resource/Subscription/fixture-f47d92df9565775d/UsagePoint/fixture-6fdef651df23113d/UsageSummary" rel="related" type="espi-feed/UsageSummary">
+    </ns0:link>
+    <ns0:link href="https://example.invalid/Opower/espi/1_1/resource/Subscription/fixture-f47d92df9565775d/UsagePoint/fixture-6fdef651df23113d/UsageSummary/urn:uuid:4cca3a73-6718-3e2f-89fa-a6c82227ba66" rel="related" type="espi-entry/UsageSummary">
+    </ns0:link>
+    <ns0:title type="text">Synthetic Opower fixture</ns0:title>
+    <ns0:updated>2024-01-01T00:00:00Z</ns0:updated>
+    <ns0:published>2024-01-01T00:00:00Z</ns0:published>
+    <ns0:content type="xml">
+      <ns2:UsagePoint>
+        <ns2:ServiceCategory>
+          <ns2:kind>0</ns2:kind>
+        </ns2:ServiceCategory>
+      </ns2:UsagePoint>
+    </ns0:content>
+  </ns0:entry>
+  <ns0:entry>
+    <ns0:id>urn:uuid:628d608784bba412</ns0:id>
+    <ns0:link href="https://example.invalid/Opower/espi/1_1/resource/Subscription/fixture-f47d92df9565775d/UsagePoint/fixture-6fdef651df23113d/MeterReading/fixture-628d608784bba412" rel="self" type="espi-entry/MeterReading">
+    </ns0:link>
+    <ns0:link href="https://example.invalid/Opower/espi/1_1/resource/Subscription/fixture-f47d92df9565775d/UsagePoint/fixture-6fdef651df23113d/MeterReading" rel="up" type="espi-feed/MeterReading">
+    </ns0:link>
+    <ns0:link href="https://example.invalid/Opower/espi/1_1/resource/ReadingType/fixture-8f2de0f1759ca7dc" rel="related" type="espi-entry/ReadingType">
+    </ns0:link>
+    <ns0:link href="https://example.invalid/Opower/espi/1_1/resource/Subscription/fixture-f47d92df9565775d/UsagePoint/fixture-6fdef651df23113d" rel="related" type="espi-entry/UsagePoint">
+    </ns0:link>
+    <ns0:link href="https://example.invalid/Opower/espi/1_1/resource/Subscription/fixture-f47d92df9565775d/UsagePoint/fixture-6fdef651df23113d/MeterReading/fixture-628d608784bba412/IntervalBlock/fixture-3375e54e7e9e4890" rel="related" type="espi-entry/IntervalBlock">
+    </ns0:link>
+    <ns0:link href="https://example.invalid/Opower/espi/1_1/resource/Subscription/fixture-f47d92df9565775d/UsagePoint/fixture-6fdef651df23113d/MeterReading/fixture-628d608784bba412/IntervalBlock" rel="related" type="espi-feed/IntervalBlock">
+    </ns0:link>
+    <ns0:title type="text">Synthetic Opower fixture</ns0:title>
+    <ns0:updated>2024-01-01T00:00:00Z</ns0:updated>
+    <ns0:published>2024-01-01T00:00:00Z</ns0:published>
+    <ns0:content type="xml">
+      <ns2:MeterReading>
+      </ns2:MeterReading>
+    </ns0:content>
+  </ns0:entry>
+  <ns0:entry>
+    <ns0:id>urn:uuid:8f2de0f1759ca7dc</ns0:id>
+    <ns0:link href="https://example.invalid/Opower/espi/1_1/resource/ReadingType/fixture-8f2de0f1759ca7dc" rel="self" type="espi-entry/ReadingType">
+    </ns0:link>
+    <ns0:link href="https://example.invalid/Opower/espi/1_1/resource/ReadingType" rel="up" type="espi-feed/ReadingType">
+    </ns0:link>
+    <ns0:link href="https://example.invalid/Opower/espi/1_1/resource/Subscription/fixture-f47d92df9565775d/UsagePoint/fixture-6fdef651df23113d/MeterReading/fixture-628d608784bba412" rel="related" type="espi-entry/MeterReading">
+    </ns0:link>
+    <ns0:title type="text">Synthetic Opower fixture</ns0:title>
+    <ns0:updated>2024-01-01T00:00:00Z</ns0:updated>
+    <ns0:published>2024-01-01T00:00:00Z</ns0:published>
+    <ns0:content type="xml">
+      <ns2:ReadingType>
+        <ns2:accumulationBehaviour>4</ns2:accumulationBehaviour>
+        <ns2:commodity>1</ns2:commodity>
+        <ns2:currency>REDACTED</ns2:currency>
+        <ns2:flowDirection>1</ns2:flowDirection>
+        <ns2:intervalLength>1382400</ns2:intervalLength>
+        <ns2:kind>12</ns2:kind>
+        <ns2:phase>REDACTED</ns2:phase>
+        <ns2:powerOfTenMultiplier>3</ns2:powerOfTenMultiplier>
+        <ns2:uom>72</ns2:uom>
+      </ns2:ReadingType>
+    </ns0:content>
+  </ns0:entry>
+  <ns0:entry>
+    <ns0:id>urn:uuid:3375e54e7e9e4890</ns0:id>
+    <ns0:link href="https://example.invalid/Opower/espi/1_1/resource/Subscription/fixture-f47d92df9565775d/UsagePoint/fixture-6fdef651df23113d/MeterReading/fixture-628d608784bba412/IntervalBlock/fixture-3375e54e7e9e4890" rel="self" type="espi-entry/IntervalBlock">
+    </ns0:link>
+    <ns0:link href="https://example.invalid/Opower/espi/1_1/resource/Subscription/fixture-f47d92df9565775d/UsagePoint/fixture-6fdef651df23113d/MeterReading/fixture-628d608784bba412/IntervalBlock" rel="up" type="espi-feed/IntervalBlock">
+    </ns0:link>
+    <ns0:link href="https://example.invalid/Opower/espi/1_1/resource/Subscription/fixture-f47d92df9565775d/UsagePoint/fixture-6fdef651df23113d/MeterReading/fixture-628d608784bba412" rel="related" type="espi-entry/MeterReading">
+    </ns0:link>
+    <ns0:title type="text">Synthetic Opower fixture</ns0:title>
+    <ns0:updated>2024-01-01T00:00:00Z</ns0:updated>
+    <ns0:published>2024-01-01T00:00:00Z</ns0:published>
+    <ns0:content type="xml">
+      <ns2:IntervalBlock>
+        <ns2:interval>
+          <ns2:duration>38880000</ns2:duration>
+          <ns2:start>1704067200</ns2:start>
+        </ns2:interval>
+        <ns2:IntervalReading>
+          <ns2:cost>10000000</ns2:cost>
+          <ns2:timePeriod>
+            <ns2:duration>2592000</ns2:duration>
+            <ns2:start>1704067200</ns2:start>
+          </ns2:timePeriod>
+          <ns2:value>300000</ns2:value>
+        </ns2:IntervalReading>
+        <ns2:IntervalReading>
+          <ns2:cost>10700000</ns2:cost>
+          <ns2:timePeriod>
+            <ns2:duration>2592000</ns2:duration>
+            <ns2:start>1706659200</ns2:start>
+          </ns2:timePeriod>
+          <ns2:value>420000</ns2:value>
+        </ns2:IntervalReading>
+        <ns2:IntervalReading>
+          <ns2:cost>11400000</ns2:cost>
+          <ns2:timePeriod>
+            <ns2:duration>2592000</ns2:duration>
+            <ns2:start>1709251200</ns2:start>
+          </ns2:timePeriod>
+          <ns2:value>510000</ns2:value>
+        </ns2:IntervalReading>
+        <ns2:IntervalReading>
+          <ns2:cost>12100000</ns2:cost>
+          <ns2:timePeriod>
+            <ns2:duration>2592000</ns2:duration>
+            <ns2:start>1711843200</ns2:start>
+          </ns2:timePeriod>
+          <ns2:value>680000</ns2:value>
+        </ns2:IntervalReading>
+        <ns2:IntervalReading>
+          <ns2:cost>12800000</ns2:cost>
+          <ns2:timePeriod>
+            <ns2:duration>2592000</ns2:duration>
+            <ns2:start>1714435200</ns2:start>
+          </ns2:timePeriod>
+          <ns2:value>740000</ns2:value>
+        </ns2:IntervalReading>
+        <ns2:IntervalReading>
+          <ns2:cost>13500000</ns2:cost>
+          <ns2:timePeriod>
+            <ns2:duration>2592000</ns2:duration>
+            <ns2:start>1717027200</ns2:start>
+          </ns2:timePeriod>
+          <ns2:value>530000</ns2:value>
+        </ns2:IntervalReading>
+        <ns2:IntervalReading>
+          <ns2:cost>14200000</ns2:cost>
+          <ns2:timePeriod>
+            <ns2:duration>2592000</ns2:duration>
+            <ns2:start>1719619200</ns2:start>
+          </ns2:timePeriod>
+          <ns2:value>410000</ns2:value>
+        </ns2:IntervalReading>
+        <ns2:IntervalReading>
+          <ns2:cost>14900000</ns2:cost>
+          <ns2:timePeriod>
+            <ns2:duration>2592000</ns2:duration>
+            <ns2:start>1722211200</ns2:start>
+          </ns2:timePeriod>
+          <ns2:value>360000</ns2:value>
+        </ns2:IntervalReading>
+        <ns2:IntervalReading>
+          <ns2:cost>15600000</ns2:cost>
+          <ns2:timePeriod>
+            <ns2:duration>2592000</ns2:duration>
+            <ns2:start>1724803200</ns2:start>
+          </ns2:timePeriod>
+          <ns2:value>390000</ns2:value>
+        </ns2:IntervalReading>
+        <ns2:IntervalReading>
+          <ns2:cost>16300000</ns2:cost>
+          <ns2:timePeriod>
+            <ns2:duration>2592000</ns2:duration>
+            <ns2:start>1727395200</ns2:start>
+          </ns2:timePeriod>
+          <ns2:value>450000</ns2:value>
+        </ns2:IntervalReading>
+        <ns2:IntervalReading>
+          <ns2:cost>17000000</ns2:cost>
+          <ns2:timePeriod>
+            <ns2:duration>2592000</ns2:duration>
+            <ns2:start>1729987200</ns2:start>
+          </ns2:timePeriod>
+          <ns2:value>470000</ns2:value>
+        </ns2:IntervalReading>
+        <ns2:IntervalReading>
+          <ns2:cost>17700000</ns2:cost>
+          <ns2:timePeriod>
+            <ns2:duration>2592000</ns2:duration>
+            <ns2:start>1732579200</ns2:start>
+          </ns2:timePeriod>
+          <ns2:value>340000</ns2:value>
+        </ns2:IntervalReading>
+        <ns2:IntervalReading>
+          <ns2:cost>18400000</ns2:cost>
+          <ns2:timePeriod>
+            <ns2:duration>2592000</ns2:duration>
+            <ns2:start>1735171200</ns2:start>
+          </ns2:timePeriod>
+          <ns2:value>370000</ns2:value>
+        </ns2:IntervalReading>
+        <ns2:IntervalReading>
+          <ns2:cost>19100000</ns2:cost>
+          <ns2:timePeriod>
+            <ns2:duration>2592000</ns2:duration>
+            <ns2:start>1737763200</ns2:start>
+          </ns2:timePeriod>
+          <ns2:value>440000</ns2:value>
+        </ns2:IntervalReading>
+        <ns2:IntervalReading>
+          <ns2:cost>19800000</ns2:cost>
+          <ns2:timePeriod>
+            <ns2:duration>2592000</ns2:duration>
+            <ns2:start>1740355200</ns2:start>
+          </ns2:timePeriod>
+          <ns2:value>620000</ns2:value>
+        </ns2:IntervalReading>
+      </ns2:IntervalBlock>
+    </ns0:content>
+  </ns0:entry>
+  <ns0:entry>
+    <ns0:id>urn:uuid:9057972048bd28b3</ns0:id>
+    <ns0:link href="https://example.invalid/Opower/espi/1_1/resource/Subscription/fixture-f47d92df9565775d/UsagePoint/fixture-6fdef651df23113d/UsageSummary" rel="up" type="espi-feed/UsageSummary">
+    </ns0:link>
+    <ns0:link href="https://example.invalid/Opower/espi/1_1/resource/Subscription/fixture-f47d92df9565775d/UsagePoint/fixture-6fdef651df23113d/UsageSummary/urn:uuid:4cca3a73-6718-3e2f-89fa-a6c82227ba66" rel="self" type="espi-entry/UsageSummary">
+    </ns0:link>
+    <ns0:link href="https://example.invalid/Opower/espi/1_1/resource/Subscription/fixture-f47d92df9565775d/UsagePoint" rel="related" type="espi-feed/UsagePoint">
+    </ns0:link>
+    <ns0:link href="https://example.invalid/Opower/espi/1_1/resource/Subscription/fixture-f47d92df9565775d/UsagePoint/fixture-6fdef651df23113d" rel="related" type="espi-entry/UsagePoint">
+    </ns0:link>
+    <ns0:title type="text">Synthetic Opower fixture</ns0:title>
+    <ns0:updated>2024-01-01T00:00:00Z</ns0:updated>
+    <ns0:published>2024-01-01T00:00:00Z</ns0:published>
+    <ns0:content type="xml">
+      <ns2:UsageSummary>
+        <ns2:billingPeriod>
+          <ns2:duration>38188800</ns2:duration>
+          <ns2:start>1704067200</ns2:start>
+        </ns2:billingPeriod>
+        <ns2:billLastPeriod>REDACTED</ns2:billLastPeriod>
+        <ns2:billToDate>REDACTED</ns2:billToDate>
+        <ns2:costAdditionalLastPeriod>REDACTED</ns2:costAdditionalLastPeriod>
+        <ns2:currency>REDACTED</ns2:currency>
+        <ns2:overallConsumptionLastPeriod>
+          <ns2:powerOfTenMultiplier>3</ns2:powerOfTenMultiplier>
+          <ns2:timeStamp>REDACTED</ns2:timeStamp>
+          <ns2:uom>72</ns2:uom>
+          <ns2:value>0</ns2:value>
+          <ns2:readingTypeRef>REDACTED</ns2:readingTypeRef>
+        </ns2:overallConsumptionLastPeriod>
+        <ns2:currentBillingPeriodOverAllConsumption>
+          <ns2:powerOfTenMultiplier>3</ns2:powerOfTenMultiplier>
+          <ns2:timeStamp>REDACTED</ns2:timeStamp>
+          <ns2:uom>72</ns2:uom>
+          <ns2:value>0</ns2:value>
+          <ns2:readingTypeRef>REDACTED</ns2:readingTypeRef>
+        </ns2:currentBillingPeriodOverAllConsumption>
+        <ns2:qualityOfReading>REDACTED</ns2:qualityOfReading>
+        <ns2:statusTimeStamp>REDACTED</ns2:statusTimeStamp>
+      </ns2:UsageSummary>
+    </ns0:content>
+  </ns0:entry>
+</ns0:feed>

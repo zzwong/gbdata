@@ -1,0 +1,11 @@
+/bin/
+/dist/
+/docs/plans/
+*.har
+*.pem
+*.p12
+*.pfx
+coverage.out
+.DS_Store
+.env
+.env.*

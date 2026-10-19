@@ -12,6 +12,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
+	"unicode/utf8"
 )
 
 const MaxDocumentBytes int64 = 100 << 20
@@ -56,6 +57,9 @@ func Parse(r io.Reader) (Document, error) {
 	if feed.XMLName.Local != "feed" || feed.XMLName.Space != AtomNamespace {
 		return Document{}, errors.New("ESPI document root must be an Atom feed")
 	}
+	if err := consumeFeedSuffix(decoder, data); err != nil {
+		return Document{}, err
+	}
 	if len(feed.Entries) > MaxEntries {
 		return Document{}, errors.New("ESPI document has too many entries")
 	}
@@ -76,6 +80,71 @@ func Parse(r io.Reader) (Document, error) {
 	}
 	return doc, nil
 }
+
+// consumeFeedSuffix permits XML Misc after the root, not another document.
+// This is a framing check, not a complete XML conformance validator.
+func consumeFeedSuffix(decoder *xml.Decoder, data []byte) error {
+	invalid := errors.New("parse ESPI XML: invalid content after Atom feed")
+	for {
+		start := decoder.InputOffset()
+		token, err := decoder.Token()
+		if err == io.EOF {
+			return nil
+		}
+		if err != nil {
+			// Decoder errors can include input text, such as an entity name.
+			return invalid
+		}
+		switch value := token.(type) {
+		case xml.CharData:
+			// Check source bytes: escaped whitespace and CDATA are not XML S.
+			for _, character := range data[start:decoder.InputOffset()] {
+				if !isXMLSpace(character) {
+					return invalid
+				}
+			}
+		case xml.Comment:
+			if !validXMLText(value) {
+				return invalid
+			}
+		case xml.ProcInst:
+			// The reserved target xml (in any case) cannot be trailing Misc.
+			if strings.EqualFold(value.Target, "xml") || !validXMLText(value.Inst) {
+				return invalid
+			}
+			// encoding/xml does not require whitespace between target and data.
+			raw := data[start:decoder.InputOffset()]
+			afterTarget := raw[2+len(value.Target):]
+			if !bytes.Equal(afterTarget, []byte("?>")) &&
+				(len(afterTarget) == 0 || !isXMLSpace(afterTarget[0])) {
+				return invalid
+			}
+		default:
+			return invalid
+		}
+	}
+}
+
+func isXMLSpace(character byte) bool {
+	return character == ' ' || character == '\t' || character == '\r' || character == '\n'
+}
+
+// XML 1.0 Char; encoding/xml does not check comment and PI body characters.
+func validXMLText(text []byte) bool {
+	if !utf8.Valid(text) {
+		return false
+	}
+	for _, character := range string(text) {
+		if character != '\t' && character != '\n' && character != '\r' &&
+			!(character >= 0x20 && character <= 0xD7FF) &&
+			!(character >= 0xE000 && character <= 0xFFFD) &&
+			!(character >= 0x10000 && character <= 0x10FFFF) {
+			return false
+		}
+	}
+	return true
+}
+
 func decodeResource(inner []byte) (Resource, error) {
 	decoder := xml.NewDecoder(bytes.NewReader(inner))
 	for {

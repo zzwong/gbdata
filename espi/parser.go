@@ -23,19 +23,31 @@ const opowerFeedTitle = "Opower ESPI Third Party Batch Feed v1"
 
 type feedXML struct {
 	XMLName xml.Name
-	Title   string     `xml:"title"`
-	Updated string     `xml:"updated"`
-	Entries []entryXML `xml:"entry"`
+	Title   string     `xml:"http://www.w3.org/2005/Atom title"`
+	Updated string     `xml:"http://www.w3.org/2005/Atom updated"`
+	Entries []entryXML `xml:"http://www.w3.org/2005/Atom entry"`
 }
 type entryXML struct {
-	ID        string `xml:"id"`
-	Title     string `xml:"title"`
-	Published string `xml:"published"`
-	Updated   string `xml:"updated"`
-	Links     []Link `xml:"link"`
-	Content   struct {
-		Inner []byte `xml:",innerxml"`
-	} `xml:"content"`
+	ID        string     `xml:"http://www.w3.org/2005/Atom id"`
+	Title     string     `xml:"http://www.w3.org/2005/Atom title"`
+	Published string     `xml:"http://www.w3.org/2005/Atom published"`
+	Updated   string     `xml:"http://www.w3.org/2005/Atom updated"`
+	Links     []Link     `xml:"http://www.w3.org/2005/Atom link"`
+	Content   contentXML `xml:"http://www.w3.org/2005/Atom content"`
+}
+
+// Atom link attributes are unqualified. encoding/xml's unqualified field
+// tags otherwise also match namespaced attribute lookalikes.
+func (link *Link) UnmarshalXML(decoder *xml.Decoder, element xml.StartElement) error {
+	attributes := make([]xml.Attr, 0, len(element.Attr))
+	for _, attribute := range element.Attr {
+		if attribute.Name.Space == "" {
+			attributes = append(attributes, attribute)
+		}
+	}
+	element.Attr = attributes
+	type plainLink Link
+	return decoder.DecodeElement((*plainLink)(link), &element)
 }
 
 // Parse reads one bounded Atom XML feed and decodes supported ESPI resources.
@@ -66,9 +78,9 @@ func Parse(r io.Reader) (Document, error) {
 	doc := Document{Title: feed.Title, Updated: feed.Updated, Entries: make([]Entry, 0, len(feed.Entries))}
 	readings := 0
 	for _, raw := range feed.Entries {
-		resource, err := decodeResource(raw.Content.Inner)
-		if err != nil {
-			return Document{}, fmt.Errorf("entry %q: %w", raw.ID, err)
+		resource := raw.Content.Resource
+		if resource == nil {
+			resource = UnknownResource{Name: "empty"}
 		}
 		if block, ok := resource.(IntervalBlock); ok {
 			readings += len(block.Readings)
@@ -145,63 +157,94 @@ func validXMLText(text []byte) bool {
 	return true
 }
 
-func decodeResource(inner []byte) (Resource, error) {
-	decoder := xml.NewDecoder(bytes.NewReader(inner))
+// contentXML decodes in the feed's original stream so namespace bindings on
+// feed, entry, and content remain in scope (raw inner XML loses those bindings).
+type contentXML struct {
+	Resource Resource
+}
+
+func (content *contentXML) UnmarshalXML(decoder *xml.Decoder, element xml.StartElement) error {
 	for {
 		token, err := decoder.Token()
-		if err == io.EOF {
-			return UnknownResource{Name: "empty"}, nil
-		}
 		if err != nil {
-			return nil, err
+			return err
+		}
+		if end, ok := token.(xml.EndElement); ok && end.Name == element.Name {
+			return nil
 		}
 		start, ok := token.(xml.StartElement)
 		if !ok {
 			continue
 		}
-
+		if content.Resource != nil {
+			return errors.New("entry content contains multiple resources")
+		}
+		resourceDecoder := xml.NewTokenDecoder(&espiTokens{decoder: decoder, start: &start})
 		var resource Resource
-		switch start.Name.Local {
+		name := start.Name.Local
+		if start.Name.Space != ESPINamespace {
+			name = ""
+		}
+		switch name {
 		case "UsagePoint":
 			var value UsagePoint
-			err = decoder.DecodeElement(&value, &start)
+			err = resourceDecoder.Decode(&value)
 			resource = value
 		case "LocalTimeParameters":
 			var value LocalTimeParameters
-			err = decoder.DecodeElement(&value, &start)
+			err = resourceDecoder.Decode(&value)
 			resource = value
 		case "MeterReading":
 			var value MeterReading
-			err = decoder.DecodeElement(&value, &start)
+			err = resourceDecoder.Decode(&value)
 			resource = value
 		case "ReadingType":
 			var value ReadingType
-			err = decoder.DecodeElement(&value, &start)
+			err = resourceDecoder.Decode(&value)
 			resource = value
 		case "IntervalBlock":
 			var value IntervalBlock
-			err = decoder.DecodeElement(&value, &start)
+			err = resourceDecoder.Decode(&value)
 			resource = value
 		default:
 			var discard struct{}
-			err = decoder.DecodeElement(&discard, &start)
+			err = resourceDecoder.Decode(&discard)
 			resource = UnknownResource{Name: start.Name.Local}
 		}
 		if err != nil {
+			return err
+		}
+		content.Resource = resource
+	}
+}
+
+// espiTokens removes foreign element subtrees before the model decoder sees
+// them. This includes foreign ancestors in path fields such as
+// ServiceCategory>kind and ReadingQuality>quality, not just leaf lookalikes.
+// The underlying decoder has already expanded all names in their original scope.
+type espiTokens struct {
+	decoder *xml.Decoder
+	start   *xml.StartElement
+}
+
+func (tokens *espiTokens) Token() (xml.Token, error) {
+	if tokens.start != nil {
+		start := *tokens.start
+		tokens.start = nil
+		return start, nil
+	}
+	for {
+		token, err := tokens.decoder.Token()
+		if err != nil {
 			return nil, err
 		}
-		for {
-			trailing, trailingErr := decoder.Token()
-			if trailingErr == io.EOF {
-				return resource, nil
+		if start, ok := token.(xml.StartElement); ok && start.Name.Space != ESPINamespace {
+			if err := tokens.decoder.Skip(); err != nil {
+				return nil, err
 			}
-			if trailingErr != nil {
-				return nil, trailingErr
-			}
-			if _, ok := trailing.(xml.StartElement); ok {
-				return nil, errors.New("entry content contains multiple resources")
-			}
+			continue
 		}
+		return token, nil
 	}
 }
 

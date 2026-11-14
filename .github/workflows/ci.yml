@@ -2,6 +2,7 @@ name: CI
 
 # Keep CI on the reviewed compiler, independently of the go.mod language minimum.
 on:
+  workflow_dispatch:
   push:
     branches: [main]
   pull_request:
